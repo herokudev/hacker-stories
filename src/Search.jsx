@@ -1,23 +1,22 @@
-export default function Search() {
+import { useState } from "react";
+
+export default function Search(props) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  console.log("Search Component render");
   const handleChange = (event) => {
-    // synthetic event
-    console.log(event);
-    // value of target (here: input HTML element)
-    console.log(event.target.value);
-  };
-  const handleBlur = (event) => {
-    console.log("This is a blur event");
+    setSearchTerm(event.target.value);
+
+    props.onSearch(event);
   };
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input
-        id="search"
-        type="text"
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <input id="search" type="text" onChange={handleChange} />
+      <p>
+        Searching for <strong>{searchTerm}</strong>.
+      </p>
     </div>
   );
 }

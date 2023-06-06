@@ -5,6 +5,7 @@ function createMsg() {
 }
 
 const Header = () => {
+  console.log("Header Component render");
   return <h1>{createMsg()}</h1>;
 };
 export default Header;

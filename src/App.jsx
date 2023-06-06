@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Search from "./Search";
-import ListObjects from "./ListObjects";
+import List from "./ListObjects";
 
 const stories = [
   {
@@ -21,13 +21,21 @@ const stories = [
   },
 ];
 
+const handleSearch = (event) => {
+  console.log(event.target.value);
+};
+
 function App() {
+  console.log("App Component render");
   return (
     <div>
-      <Header />
-      <Search />
+      <h1>My Hacker Stories</h1>
+
+      <Search onSearch={handleSearch} />
+
       <hr />
-      <ListObjects renderData={stories} />
+
+      <List list={stories} />
     </div>
   );
 }

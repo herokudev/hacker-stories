@@ -5,6 +5,7 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    {console.log("Main Component render")}
     <AppTemplate />
   </React.StrictMode>
 );
