@@ -1,4 +1,4 @@
-import Header from "./Header";
+import { useState, useEffect } from "react";
 import Search from "./Search";
 import List from "./ListObjects";
 
@@ -21,21 +21,33 @@ const stories = [
   },
 ];
 
-const handleSearch = (event) => {
-  console.log(event.target.value);
-};
-
 function App() {
   console.log("App Component render");
+  const [searchTerm, setSearchTerm] = useState(
+    localStorage.getItem("search") || "React"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("search", searchTerm);
+  }, [searchTerm]);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searchedStories = stories.filter((story) =>
+    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search onSearch={handleSearch} />
+      <Search search={searchTerm} onSearch={handleSearch} />
 
       <hr />
 
-      <List list={stories} />
+      <List list={searchedStories} />
     </div>
   );
 }

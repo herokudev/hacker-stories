@@ -1,11 +1,11 @@
 import Item from "./Item";
 
-const ListObjects = (props) => {
+const ListObjects = ({ list }) => {
   console.log("ListObjects Component render");
   return (
     <ul>
-      {props.list.map((item) => (
-        <Item key={item.objectID} item={item} />
+      {list.map((item) => (
+        <Item key={item.objectID} {...item} />
       ))}
     </ul>
   );
